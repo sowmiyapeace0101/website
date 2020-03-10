@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Sidebar from './components/sidebar'
+import Resume from './components/resume'
 
 class App extends Component {
   render() {
@@ -9,8 +10,8 @@ class App extends Component {
         <div id="container-wrap">
          	<Sidebar></Sidebar>
 				<div id="colorlib-main">
-
-          	</div>
+          <Resume></Resume>
+        </div>
       	</div>
       </div>
     );
