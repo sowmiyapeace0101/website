@@ -10,7 +10,7 @@ class App extends Component {
         <div id="container-wrap">
          	<Sidebar></Sidebar>
 				<div id="colorlib-main">
-          <Resume></Resume>
+          {/* <Resume></Resume> */}
         </div>
       	</div>
       </div>
