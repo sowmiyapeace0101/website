@@ -20,7 +20,7 @@ export default class Resume extends Component {
         return (
           <div>
             <Document
-              file="../../public/files/resume_leehangwee.pdf"
+              file={process.env.PUBLIC_URL + '/files/resume_leehangwee.pdf'}
               onLoadSuccess={this.onDocumentLoadSuccess}
             >
               <Page pageNumber={pageNumber} />
