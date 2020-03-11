@@ -45,13 +45,12 @@ pipeline {
                 branch 'production'
             }
             steps {
-                sh 'export DOCKERID=hwlee96'
-                sh 'docker image build --tag $DOCKERID/my-website:1.0 .'
-                sh 'docker run -p 49160:5000 -d --name my_website $DOCKERID/my-website:1.0'
+                sh 'docker image build --tag hwlee96/my-website:1.0 .'
+                sh 'docker run -p 49160:5000 --detach --rm --name my_website hwlee96/my-website:1.0'
                 sh 'curl -i localhost:49160'
                 input message: 'Finished using the web site before removing docker build? (Click "Proceed" to continue)'
                 sh 'docker container stop my_website'
-                sh 'docker image rm $DOCKERID/my-website:1.0'
+                sh 'docker image rm hwlee96/my-website:1.0'
 
             }
         }
