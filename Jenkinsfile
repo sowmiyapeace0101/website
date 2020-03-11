@@ -45,7 +45,6 @@ pipeline {
                 branch 'production'
             }
             steps {
-                sh './jenkins/scripts/kill.sh'
                 sh 'export DOCKERID=hwlee96'
                 sh 'docker image build --tag $DOCKERID/my-website:1.0 .'
                 sh 'docker run -p 49160:5000 -d --name my_website $DOCKERID/my-website:1.0'
