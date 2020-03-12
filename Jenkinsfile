@@ -63,7 +63,7 @@ pipeline {
             agent any 
             steps {
                 echo "Starting build"
-                sh "docker inspect network"
+                sh "ls"
             }
         }
 
