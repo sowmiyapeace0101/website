@@ -49,14 +49,16 @@ pipeline {
                 branch 'production'
             }
             steps {
-                dockerImage = docker.build registry
-                // For withRun, it automatically stops the container at the end of a block
-                // And unlike inside, shell steps inside the block are not run inside the container
-                docker.image(registry).withRun('-p 49160:5000') { c ->
-                    sh 'curl -i localhost:49160'
-                    input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                    sh 'echo "Container is successful" '
-                }                
+                script {
+                    dockerImage = docker.build registry
+                    // For withRun, it automatically stops the container at the end of a block
+                    // And unlike inside, shell steps inside the block are not run inside the container
+                    docker.image(registry).withRun('-p 49160:5000') { c ->
+                        sh 'curl -i localhost:49160'
+                        input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                        sh 'echo "Container is successful" '
+                    }     
+                }
             }
         }
 
@@ -65,9 +67,11 @@ pipeline {
                 branch 'production'
             }
             steps {
-                docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-                    dockerImage.push("${env.BUILD_NUMBER}")
-                    dockerImage.push("latest")
+                script{
+                    docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+                        dockerImage.push("${env.BUILD_NUMBER}")
+                        dockerImage.push("latest")
+                    }
                 }
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
