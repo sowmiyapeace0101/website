@@ -4,9 +4,16 @@
 * DevOps stack used:
   * Terraform (Provisioning/Configuration)
   * Git (Version Control)
-  * Continuous Integration/Deployment 
+  * Jenkins (CI/CD)
+  * 
 * Consists of 2 systems: 1. Development & 2. Production 
-* DevOps stack: Git(Version Control), Docker (Containerization), Jenkins (CI/CD), 
+* DevOps stack: Git(Version Control), , Jenkins (CI/CD), 
+
+
+* To run: ```sudo docker run -d --rm -p <port-on-host>:5000 --name <name-of-container> hwlee96/my-website```
+* Access (static) web app at ```http://localhost:<port-on-host>/```
+* To stop (and remove because of --rm argument), run ```sudo docker container stop <name-of-container>```
+* To remove image, run ```sudo docker rmi hwlee96/my-website:latest```
 
 ## Production
 (Instructions to pull from private registry in Docker)
