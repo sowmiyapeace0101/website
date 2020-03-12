@@ -1,12 +1,10 @@
 pipeline {
-
     agent {
         docker {
             image 'node:12-alpine'
             args '-p 3000:3000 -p 5000:5000'
         }
     }
-
     environment {
         CI = 'true'
         registry = "hwlee96/my-website"
@@ -19,7 +17,7 @@ pipeline {
                 not {
                     branch 'master'
                 }
-            }                        
+            }            
             steps {
                 sh 'npm install'
             }
@@ -64,11 +62,8 @@ pipeline {
             }
             agent any 
             steps {
-                sh 'echo "Starting build"'
-                script {
-                    dockerImage = docker.build registry
-    
-                }
+                echo "Starting build"
+                docker inspect network
             }
         }
 
