@@ -63,7 +63,9 @@ pipeline {
             }
             steps {
                 script {
+                    sh 'echo "Starting build"'
                     dockerImage = docker.build registry
+                    sh 'echo "Ended build"'
                     // For withRun, it automatically stops the container at the end of a block
                     // And unlike inside, shell steps inside the block are not run inside the container
                     docker.image(registry).withRun('-p 49160:5000') { c ->
