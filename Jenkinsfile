@@ -13,6 +13,11 @@ pipeline {
     }
     stages {
         stage('Build') {
+            when {
+                not {
+                    branch 'master'
+                }
+            }            
             steps {
                 sh 'npm install'
             }
