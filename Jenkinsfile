@@ -5,8 +5,8 @@ pipeline {
         registry = "hwlee96/my-website"
         registryCredential = 'docker-hub-credentials'
         dockerImage = ''
-        jenkinsdockerIP = "${sh(script:'awk 'END{print $1}' /etc/hosts', returnStdout: true)}"
-    }
+        jenkinsdockerIP = "${sh(script:'hostname -i', returnStdout: true)}"
+    } 
     stages {
         stage('Build') {
             when {
