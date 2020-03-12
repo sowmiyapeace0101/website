@@ -62,7 +62,7 @@ pipeline {
             }
             steps {
                 echo "Starting build"
-                ls
+                sh "ls"
             }
         }
 
