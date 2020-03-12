@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:12-alpine'
-            args '-p 3000:3000 -p 5000:5000'
-        }
-    }
+
     environment {
         CI = 'true'
         registry = "hwlee96/my-website"
@@ -17,7 +12,13 @@ pipeline {
                 not {
                     branch 'master'
                 }
-            }            
+            }
+            agent {
+                docker {
+                    image 'node:12-alpine'
+                    args '-p 3000:3000 -p 5000:5000'
+                }
+            }                        
             steps {
                 sh 'npm install'
             }
@@ -65,13 +66,7 @@ pipeline {
                 sh 'echo "Starting build"'
                 script {
                     dockerImage = docker.build registry
-                    sh 'echo "Ended build"'
-                    // For withRun, it automatically stops the container at the end of a block
-                    // And unlike inside, shell steps inside the block are not run inside the container
-                    docker.image(registry).withRun('-p 49160:5000') { c ->
-                        sh 'curl -i localhost:49160'
-                        input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                        sh 'echo "Container is successful" '
+
                     }     
                 }
             }
