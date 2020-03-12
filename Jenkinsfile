@@ -7,6 +7,9 @@ pipeline {
     }
     environment {
         CI = 'true'
+        registry = "hwlee96/my-website"
+        registryCredential = 'docker-hub-credentials'
+        dockerImage = ''
     }
     stages {
         stage('Build') {
@@ -27,6 +30,7 @@ pipeline {
                 sh './jenkins/scripts/deliver-for-development.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh './jenkins/scripts/kill.sh'
+                sh 'echo $BUILD_NUMBER'
             }
         }
         stage('Deploy for production') {
@@ -40,18 +44,32 @@ pipeline {
             }
         }
 
-        stage('Package Docker and deploy in remote server') {
+        stage('Build image and test (manually)') {
             when {
                 branch 'production'
             }
             steps {
-                sh 'docker image build --tag hwlee96/my-website:1.0 .'
-                sh 'docker run -p 49160:5000 --detach --rm --name my_website hwlee96/my-website:1.0'
-                sh 'curl -i localhost:49160'
-                input message: 'Finished using the web site before removing docker build? (Click "Proceed" to continue)'
-                sh 'docker container stop my_website'
-                sh 'docker image rm hwlee96/my-website:1.0'
+                dockerImage = docker.build registry
+                // For withRun, it automatically stops the container at the end of a block
+                // And unlike inside, shell steps inside the block are not run inside the container
+                docker.image('mysql:5').withRun('-p 49160:5000') { c ->
+                    sh 'curl -i localhost:49160'
+                    input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                    sh 'echo "Container is successful" '
+                }                
+            }
+        }
 
+        stage('Push image to dockerhub registry') {
+            when {
+                branch 'production'
+            }
+            steps {
+                docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+                    dockerImage.push("${env.BUILD_NUMBER}")
+                    dockerImage.push("latest")
+                }
+                sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
     }
