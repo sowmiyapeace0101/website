@@ -60,9 +60,10 @@ pipeline {
             when {
                 branch 'master'
             }
+            agent any 
             steps {
                 echo "Starting build"
-                sh "ls"
+                ls
             }
         }
 
@@ -70,6 +71,7 @@ pipeline {
             when {
                 branch 'master'
             }
+            agent any
             steps {
                 script{
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
