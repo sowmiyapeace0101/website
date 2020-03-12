@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:12-alpine'
-            args '-p 3000:3000 -p 5000:5000'
-        }
-    }
+    agent none
     environment {
         CI = 'true'
         registry = "hwlee96/my-website"
@@ -60,6 +55,9 @@ pipeline {
             when {
                 branch 'master'
             }
+            agent {
+                label 'master'
+            }
             steps {
                 echo "Starting build"
                 script {
@@ -80,7 +78,9 @@ pipeline {
             when {
                 branch 'master'
             }
-            agent any
+            agent {
+                label 'master'
+            }
             steps {
                 script{
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
