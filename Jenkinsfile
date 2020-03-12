@@ -46,7 +46,7 @@ pipeline {
 
         stage('Build image and test (manually)') {
             when {
-                branch 'production'
+                branch 'master'
             }
             steps {
                 script {
@@ -64,7 +64,7 @@ pipeline {
 
         stage('Push image to dockerhub registry') {
             when {
-                branch 'production'
+                branch 'master'
             }
             steps {
                 script{
