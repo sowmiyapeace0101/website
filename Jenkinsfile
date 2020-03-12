@@ -70,7 +70,6 @@ pipeline {
             when {
                 branch 'master'
             }
-            agent any
             steps {
                 script{
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
