@@ -23,6 +23,11 @@ pipeline {
             }
         }
         stage('Test') {
+            when {
+                not {
+                    branch 'master'
+                }
+            } 
             steps {
                 sh './jenkins/scripts/test.sh'
             }
