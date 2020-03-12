@@ -5,7 +5,6 @@ pipeline {
         registry = "hwlee96/my-website"
         registryCredential = 'docker-hub-credentials'
         dockerImage = ''
-        jenkinsdockerIP = "${sh(script:'hostname -i', returnStdout: true)}"
     } 
     stages {
         stage('Build') {
@@ -58,6 +57,9 @@ pipeline {
             }
             agent {
                 label 'master'
+            }
+            environment {
+                jenkinsdockerIP = "${sh(script:'hostname -i', returnStdout: true)}"
             }
             steps {
                 echo "Starting build"
