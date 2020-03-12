@@ -5,6 +5,7 @@ pipeline {
         registry = "hwlee96/my-website"
         registryCredential = 'docker-hub-credentials'
         dockerImage = ''
+        jenkinsdockerIP = "${sh(script:'awk 'END{print $1}' /etc/hosts', returnStdout: true)}"
     }
     stages {
         stage('Build') {
@@ -66,7 +67,7 @@ pipeline {
                     // For withRun, it automatically stops the container at the end of a block
                     // And unlike inside, shell steps inside the block are not run inside the container
                     docker.image(registry).withRun('-p 49160:5000') { c ->
-                        sh 'curl -i localhost:49160'
+                        sh "curl -i $jenkinsdockerIP:49160"
                         input message: 'Finished using the web site? (Click "Proceed" to continue)'
                         sh 'echo "Container is successful" '
                     }     
