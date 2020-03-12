@@ -55,6 +55,9 @@ pipeline {
         }
 
         stage('Build image and test (manually)') {
+            // build a container based on this Dockerfile and then run the defined steps using that container
+            // agent { dockerfile trueage }
+            agent { label 'master' }
             when {
                 branch 'master'
             }
@@ -73,6 +76,7 @@ pipeline {
         }
 
         stage('Push image to dockerhub registry') {
+            agent { label 'master' }
             when {
                 branch 'master'
             }
