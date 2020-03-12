@@ -66,8 +66,7 @@ pipeline {
                 sh 'echo "Starting build"'
                 script {
                     dockerImage = docker.build registry
-
-                    }     
+    
                 }
             }
         }
