@@ -57,13 +57,13 @@ pipeline {
         stage('Build image and test (manually)') {
             // build a container based on this Dockerfile and then run the defined steps using that container
             // agent { dockerfile trueage }
-            agent { label 'master' }
             when {
                 branch 'master'
             }
+            agent any 
             steps {
+                sh 'echo "Starting build"'
                 script {
-                    sh 'echo "Starting build"'
                     dockerImage = docker.build registry
                     sh 'echo "Ended build"'
                     // For withRun, it automatically stops the container at the end of a block
@@ -78,10 +78,10 @@ pipeline {
         }
 
         stage('Push image to dockerhub registry') {
-            agent { label 'master' }
             when {
                 branch 'master'
             }
+            agent any
             steps {
                 script{
                     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
