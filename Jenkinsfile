@@ -52,7 +52,7 @@ pipeline {
                 dockerImage = docker.build registry
                 // For withRun, it automatically stops the container at the end of a block
                 // And unlike inside, shell steps inside the block are not run inside the container
-                docker.image('mysql:5').withRun('-p 49160:5000') { c ->
+                docker.image(registry).withRun('-p 49160:5000') { c ->
                     sh 'curl -i localhost:49160'
                     input message: 'Finished using the web site? (Click "Proceed" to continue)'
                     sh 'echo "Container is successful" '
