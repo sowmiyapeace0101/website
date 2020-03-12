@@ -60,7 +60,6 @@ pipeline {
             when {
                 branch 'master'
             }
-            agent any 
             steps {
                 echo "Starting build"
                 ls
