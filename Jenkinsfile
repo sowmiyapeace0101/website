@@ -1,10 +1,5 @@
 pipeline {
-    agent{
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000 -p 5000:5000'
-        }
-    }
+    agent none
     environment {
         CI = 'true'
         registry = "hwlee96/my-website"
@@ -18,6 +13,12 @@ pipeline {
                     branch 'master'
                 }
             }
+            agent{
+                docker {
+                    image 'node:6-alpine'
+                    args '-p 3000:3000 -p 5000:5000'
+                }
+            }
             steps {
                 sh 'npm install'
             }
@@ -28,6 +29,12 @@ pipeline {
                     branch 'master'
                 }
             }
+            agent{
+                docker {
+                    image 'node:6-alpine'
+                    args '-p 3000:3000 -p 5000:5000'
+                }
+            }    
             steps {
                 sh './jenkins/scripts/test.sh'
             }
@@ -35,6 +42,12 @@ pipeline {
         stage('Deliver for development') {
             when {
                 branch 'development'
+            }
+            agent {
+                docker {
+                    image 'node:6-alpine'
+                    args '-p 3000:3000 -p 5000:5000'
+                }
             }
             steps {
                 sh './jenkins/scripts/deliver-for-development.sh'
@@ -46,6 +59,12 @@ pipeline {
         stage('Deploy for production') {
             when {
                 branch 'production'
+            }
+            agent {
+                docker {
+                    image 'node:6-alpine'
+                    args '-p 3000:3000 -p 5000:5000'
+                }
             }
             steps {
                 sh './jenkins/scripts/deploy-for-production.sh'
