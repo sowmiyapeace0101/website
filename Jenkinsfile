@@ -1,5 +1,7 @@
 pipeline {
-    agent none
+    agent {
+        label 'master'
+    }
     environment {
         CI = 'true'
         registry = "hwlee96/my-website"
@@ -17,6 +19,7 @@ pipeline {
                 docker {
                     image 'node:12-alpine'
                     args '-p 3000:3000 -p 5000:5000'
+                    reuseNode true
                 }
             }
             steps {
@@ -48,6 +51,7 @@ pipeline {
                 docker {
                     image 'node:12-alpine'
                     args '-p 3000:3000 -p 5000:5000'
+                    reuseNode true
                 }
             }
             steps {
@@ -65,6 +69,7 @@ pipeline {
                 docker {
                     image 'node:12-alpine'
                     args '-p 3000:3000 -p 5000:5000'
+                    reuseNode true
                 }
             }
             steps {
