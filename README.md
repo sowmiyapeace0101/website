@@ -9,16 +9,19 @@
 * **Note**: Front-end is not yet established and currently only contains sidebar for profile details as this project focuses on applying and building DevOps principles and pipeline automation. 
 
 * **DevOps stack**:
-  - [x] Git (Version Control)
-  - [x] Docker (Containerization)
-  - [x] Jenkins (CI/CD)
-  - [ ] Terraform (Provisioning/Configuration) - To be used
-  - [ ] ELK Stack / Nagios (Monitoring) - To be learnt and applied
-  - [ ] Kubernetes (Container Orchestration) - To be learnt and applied
+  - Git (Version Control)
+  - Docker (Containerization)
+  - Jenkins (CI/CD)
 
-* **DevOps stack**:
-  - [x] HTML, CSS, React (Static front-end)
-  - [x] NodeJS  (Static HTTP server for now)
+* **Dev stack**:
+  - HTML, CSS, React (Static front-end)
+  - NodeJS  (Static HTTP server for now)
+
+* **Improvements to make**:
+  - Terraform (Provisioning/Configuration) - To complete deployment and host app on remote server
+  - ELK Stack / Nagios (Monitoring) - To be learnt and applied
+  - Kubernetes (Container Orchestration) - To be learnt and applied
+  - Other dev-related components which will improve functionality/performance of web-app (e.g. Nginx, databases if needed)
 
 ## CI/CD (Multibranch) Pipeline Details 
 
