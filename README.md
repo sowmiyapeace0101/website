@@ -18,10 +18,10 @@
   - NodeJS  (Static HTTP server for now)
 
 * **Improvements to make**:
-  - Terraform (Provisioning/Configuration) - To complete deployment and host app on remote server
-  - ELK Stack / Nagios (Monitoring) - To be learnt and applied
-  - Kubernetes (Container Orchestration) - To be learnt and applied
-  - Other dev-related components which will improve functionality/performance of web-app (e.g. Nginx, databases if needed)
+  - [ ] Terraform (Provisioning/Configuration) - To complete deployment and host app on remote server
+  - [ ] ELK Stack / Nagios (Monitoring) - To be learnt and applied
+  - [ ] Kubernetes (Container Orchestration) - To be learnt and applied
+  - [ ] Other dev-related components which will improve functionality/performance of web-app (e.g. Nginx, databases if needed)
 
 ## CI/CD (Multibranch) Pipeline Details 
 
