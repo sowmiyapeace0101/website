@@ -4,9 +4,9 @@
 
 * **Purpose**: To apply DevOps knowledge self-learnt by efficiently automating pipeline from development to deployment of my own personal portfolio website.
 
-* **Summary**: Project focuses on applying DevOps tools for automation of workflow. Current pipeline is: CI/CD pipeline, through Jenkins container integrated with Docker, to pull containers required, run and test web application, build docker images after tests are passed and push to [personal docker hub registry](https://hub.docker.com/repository/docker/hwlee96/my-website).
+* **Summary**: Project focuses on applying DevOps tools for automation of workflow. Current pipeline is: CI/CD pipeline, through Jenkins container integrated with Docker, to pull containers required, run and test web application, build docker images after tests are passed and push to [personal docker hub registry](https://hub.docker.com/repository/docker/hwlee96/my-website). Developed and tested on **Ubuntu 18.04**, refer to instructions below to (pull and) run container from my repository and it should work on a similar Linux distribution. 
 
-* **Note**: front-end is not yet established and currently only contains sidebar for profile details as this project focuses on applying and building DevOps principles and pipeline automation. 
+* **Note**: Front-end is not yet established and currently only contains sidebar for profile details as this project focuses on applying and building DevOps principles and pipeline automation. 
 
 * **DevOps stack**:
   - [x] Git (Version Control)
