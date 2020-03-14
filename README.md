@@ -23,6 +23,8 @@
   - [ ] Kubernetes (Container Orchestration) - To be learnt and applied
   - [ ] Other dev-related components which will improve functionality/performance of web-app (e.g. Nginx, databases if needed)
 
+Current pipeline is adapted from [Jenkins's Multibranch project tutorial](https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/). (Probably) does not reflect a mature and more complex industry-standard DevOps system with best practices, so feel free to correct/recommend better ways wherever possible :)
+
 ## CI/CD (Multibranch) Pipeline Details 
 
 ### Instructions to start CI/CD multi-branch pipeline
