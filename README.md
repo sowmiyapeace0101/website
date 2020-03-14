@@ -1,8 +1,10 @@
 # Personal DevOps Project
 
-### Introduction
+## Introduction
 
-* **Description**: To apply DevOps knowledge self-learnt by building a CI/CD pipeline from development to production/deployment of my own personal portfolio website. 
+* **Purpose**: To apply DevOps knowledge self-learnt by efficiently automating pipeline from development to deployment of my own personal portfolio website.
+
+* **Summary**: Project focuses on applying DevOps tools for automation of workflow. Current pipeline is: CI/CD pipeline, through Jenkins container integrated with Docker, to pull containers required, run and test web application, build docker images after tests are passed and push to [personal docker hub registry](https://hub.docker.com/repository/docker/hwlee96/my-website).
 
 * **DevOps stack**:
   - [x] Git (Version Control)
@@ -16,9 +18,9 @@
   - [x] HTML, CSS, React (Static front-end)
   - [x] NodeJS  (Static HTTP server for now)
 
-### CI/CD (Multibranch) Pipeline Details 
+## CI/CD (Multibranch) Pipeline Details 
 
-#### Instructions to start CI/CD multi-branch pipeline
+### Instructions to start CI/CD multi-branch pipeline
 Pre-requisites: [Docker(Ubuntu)](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
 1. For first time running Jenkins CI/CD pipeline, 
@@ -30,21 +32,22 @@ Pre-requisites: [Docker(Ubuntu)](https://docs.docker.com/install/linux/docker-ce
     ```sudo docker container start jenkins-blueocean jenkins-docker```
     ```sudo docker container stop jenkins-blueocean jenkins-docker```
 
-#### Current workflow for multi-branch CI/CD pipeline
+### Current workflow for multi-branch CI/CD pipeline
 1. CI/CD pipeline currently has 3 branches with different stages:
   * Branch pipeline to run in order: ```development```, ```production```, ```master```
-  * ```development``` branch: To run and test development build 
-    - [x] ```Build``` stage: Pull, run node container from docker registry and install node modules
-    - [x] ```Test``` stage: runs basic tests (for now) in src/App.test.js 
-    - [x] ```Deliver for development```: user acceptance test for development build
-  * ```production``` branch: To run and test production build with [static server](https://github.com/zeit/serve)
+    * ```development``` branch: To run and test development build 
       - [x] ```Build``` stage: Pull, run node container from docker registry and install node modules
-    - [x] ```Test``` stage: runs basic tests (for now) in src/App.test.js 
-    - [x] ```Deliver for production```: user acceptance test for production build
-  * ```master``` branch: To deploy application on remote server
-    - [x] ```Build image``` stage: Build docker images from Dockerfile
-    - [x] ```Push Image``` stage: Push to personal docker hub registry 
-    - [ ] SSH into remote server, pull image and run web app container (not completed yet)
+      - [x] ```Test``` stage: runs basic tests (for now) in src/App.test.js 
+      - [x] ```Deliver for development```: user acceptance test for development build
+    * ```production``` branch: To run and test production build with [static server](https://github.com/zeit/serve)
+        - [x] ```Build``` stage: Pull, run node container from docker registry and install node modules
+      - [x] ```Test``` stage: runs basic tests (for now) in src/App.test.js 
+      - [x] ```Deliver for production```: user acceptance test for production build
+    * ```master``` branch: To deploy application on remote server
+      - [x] ```Build image``` stage: Build docker images from Dockerfile
+      - [x] ```Push Image``` stage: Push to personal docker hub registry 
+      - [ ] SSH into remote server, pull image and run web app container (not completed yet)
+  * Current build can be found in [my docker hub repository](https://hub.docker.com/repository/docker/hwlee96/my-website).
 
 2. After completing ```master``` branch pipeline (with built image pushed to docker hub registry), to run container from image: 
   ```sudo docker run -d --rm -p <port-on-host>:5000 --name <name-of-container> hwlee96/my-website```
